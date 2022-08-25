@@ -28,7 +28,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: send message
-      run: java -jar ./morning-1.0-SNAPSHOT.jar
+      run: java -jar ./target/morning-1.0-SNAPSHOT.jar
     env:
       APP_ID: ${{ secrets.APP_ID }}
       APP_SECRET: ${{ secrets.APP_SECRET }}
