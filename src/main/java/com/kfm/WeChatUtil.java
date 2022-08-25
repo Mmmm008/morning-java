@@ -30,17 +30,17 @@ public class WeChatUtil {
         throw new RuntimeException("获取微信TOKEN错误， 错误码为：" + json.getStr("errcode"));
     }
 
-    public static Integer sendTemplate(String token, String userId, String templateId, String data){
+    public static Integer sendTemplate(String token, String userId, String templateId, JSONObject data){
         if (ObjectUtil.isNull(token)){
             return 40002;
         }
-        Map<String,Object> params = new HashMap<>();
-        params.put("touser", userId);
-        params.put("template_id", templateId);
-        params.put("topcolor", "#FF0000");
-        HttpResponse response = HttpRequest.post(TEMPLATE_URL_PREFIX + token)
-                .form(params)
-                .execute();
+        JSONObject params = new JSONObject();
+        params.putOpt("touser", userId);
+        params.putOpt("template_id", templateId);
+        params.putOpt("data", data);
+        HttpRequest request = HttpRequest.post(TEMPLATE_URL_PREFIX + token)
+                .body(params.toString());
+        HttpResponse response = request.execute();
         JSONObject jsonObject = JSONUtil.parseObj(response);
         if (response.isOk()){
             return jsonObject.getInt("status");

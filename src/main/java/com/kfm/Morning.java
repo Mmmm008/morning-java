@@ -21,7 +21,7 @@ public class Morning {
         try{
             int count = 0;
             String[] users = configs.get("user_id").split("\n");
-            String data = initData();
+            JSONObject data = initData();
             for (String userId : users){
                 int code = WeChatUtil.sendTemplate(client, userId, templateId, data);
                 System.out.println(userId + " : " + code);
@@ -36,7 +36,7 @@ public class Morning {
 
     }
 
-    private String initData(){
+    private JSONObject initData(){
 
         JSONObject weather = getWeather(configs.get("city"));
         String city = configs.get("city");
@@ -52,7 +52,7 @@ public class Morning {
         entries.putOpt("birthday_left", new ValueDO(String.valueOf(getBirthdayLeft(configs.get("birthday"))), getRandomColor()));
         entries.putOpt("words", new ValueDO(getWords(), getRandomColor()));
 
-        return entries.toString();
+        return entries;
     }
 
     // weather 直接返回对象，在使用的地方用字段进行调用。

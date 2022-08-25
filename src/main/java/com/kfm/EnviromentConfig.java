@@ -8,13 +8,14 @@ public class EnviromentConfig {
     private static final Map<String, String> configs = new HashMap<>();
 
     static {
+        // 本地测试
 //        configs.put("start_date", "2022-08-22");
 //        configs.put("city", "西安");
 //        configs.put("birthday", "09-22");
-//        configs.put("app_id", "{{your_app_id}}");
-//        configs.put("app_secret", "{{your_app_secret}}");
-//        configs.put("user_id", "{{user_id}}");
-//        configs.put("template_id", "kKeHFgVYCbOn6VzNqddmkk9vsi3CyyB1NtMj9dgpyPQ");
+//        configs.put("app_id", "{{yourAppId}}");
+//        configs.put("app_secret", "{{yourAppSecret}}");
+//        configs.put("user_id", "{{yourUserId}}");
+//        configs.put("template_id", "{{yourTemplateId}}");
         // 读取系统变量
         configs.put("start_date", System.getenv("START_DATE"));
         configs.put("city", System.getenv("CITY"));
